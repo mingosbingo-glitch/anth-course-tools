@@ -8,140 +8,287 @@
   :root{
     --paper:#FCFAF4; --card:#FFFFFF; --ink:#1D1B17; --ink-soft:#55524B; --ink-faint:#8A857B;
     --pink:#E02E85; --pink-deep:#B01362; --line:#DEDACB;
-    --good:#157B36; --good-bg:#D7F2DE; --bad:#CD2222; --bad-bg:#F9D8D2; --lime:#DBF522;
+    --good:#157B36; --good-bg:#D7F2DE; --bad:#CD2222; --bad-bg:#F9D8D2;
+    --font:'Lato Extended','Lato','Helvetica Neue',Helvetica,Arial,sans-serif;
+    --mono:'IBM Plex Mono','Courier New',monospace;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--paper);color:var(--ink);
-    font-family:'Lato Extended','Lato','Helvetica Neue',Helvetica,Arial,sans-serif;
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);
     line-height:1.55;padding:clamp(16px,4vw,40px)}
-  .wrap{max-width:760px;margin:0 auto}
-  .eyebrow{font-family:'IBM Plex Mono','Courier New',monospace;font-size:12px;letter-spacing:.09em;
-    text-transform:uppercase;color:var(--pink)}
-  h1{font-weight:700;font-size:clamp(28px,6vw,42px);margin:.15em 0 .3em;line-height:1.05}
-  h2{font-weight:700;font-size:20px;margin:34px 0 10px}
+  .wrap{max-width:720px;margin:0 auto}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--pink);margin:0 0 6px}
+  h1{font-family:var(--font);font-weight:700;font-size:clamp(28px,6vw,40px);margin:0 0 8px}
+  h2{font-family:var(--font);font-weight:700;font-size:20px;margin:32px 0 10px}
   p{margin:0 0 12px}
-  .lede{color:var(--ink-soft);max-width:60ch}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:18px 0}
-  .meter{margin:14px 0 4px}
-  .bignum{font-weight:700;font-size:clamp(40px,11vw,64px);line-height:1;color:var(--ink)}
-  .of{color:var(--ink-faint);font-size:15px;margin-left:6px}
-  .bar{height:16px;border-radius:999px;background:#EFECE2;overflow:hidden;margin:14px 0 6px;border:1px solid var(--line)}
-  .bar > i{display:block;height:100%;background:var(--pink);transition:width .25s ease}
-  .scalerow{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-faint);
-    font-family:'IBM Plex Mono','Courier New',monospace}
-  .pct{color:var(--ink-soft);font-size:15px;margin-top:8px}
-  .weekhdr{display:flex;align-items:baseline;gap:10px;margin:22px 0 6px}
-  .weeknum{font-family:'IBM Plex Mono','Courier New',monospace;font-weight:700;font-size:15px;color:var(--pink)}
-  .weekttl{font-weight:700;font-size:17px}
-  .weekmod{font-family:'IBM Plex Mono','Courier New',monospace;font-size:11px;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--ink-faint);margin-left:auto}
+  .lede{color:var(--ink-soft);font-size:16px;max-width:60ch}
+  .standing{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:22px 24px;margin:20px 0;text-align:center}
+  .bignum{font-family:var(--font);font-weight:700;font-size:56px;line-height:1;color:var(--pink)}
+  .bignum small{display:block;font-size:14px;font-weight:400;color:var(--ink-faint);margin-top:4px;font-family:var(--font)}
+  .pct{color:var(--ink-soft);font-size:14px;margin-top:8px}
+  .note{color:var(--ink-soft);font-size:14px;margin-top:6px}
+  .week{margin:0 0 18px;border-top:3px solid var(--ink);background:var(--card)}
+  .week-head{display:flex;justify-content:space-between;align-items:baseline;padding:12px 16px 4px}
+  .week-n{font-family:var(--mono);font-size:13px;color:var(--pink)}
+  .week-title{font-weight:700;font-size:17px}
+  .week-mod{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+  .items{list-style:none;margin:0;padding:4px 8px 12px}
   .item{display:flex;align-items:center;gap:12px;width:100%;text-align:left;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;
-    padding:11px 14px;margin:6px 0;cursor:pointer;font:inherit;color:inherit}
-  .item:hover{border-color:var(--pink)}
-  .chip{flex:none;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;
-    justify-content:center;font-weight:700;font-size:15px;border:1px solid var(--line)}
-  .chip.complete{background:var(--good-bg);color:var(--good);border-color:var(--good)}
-  .chip.late{background:#F2F9C1;color:#5B6900;border-color:#9FAE00}
-  .chip.missed{background:var(--bad-bg);color:var(--bad);border-color:var(--bad)}
-  .item .lbl{font-weight:600}
-  .item .st{margin-left:auto;font-size:12px;color:var(--ink-faint);
-    font-family:'IBM Plex Mono','Courier New',monospace;text-transform:uppercase;letter-spacing:.06em}
-  .toggle{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);
-    border-radius:12px;padding:11px 14px;margin:6px 0;cursor:pointer;font:inherit;color:inherit;width:100%;text-align:left}
-  .toggle[aria-pressed="true"]{border-color:var(--pink);background:#FCEEF5}
-  .toggle .box{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid var(--ink-faint);
-    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
-  .toggle[aria-pressed="true"] .box{background:var(--pink);border-color:var(--pink);color:#fff}
-  .toggle .val{margin-left:auto;font-family:'IBM Plex Mono','Courier New',monospace;font-size:13px;color:var(--ink-soft)}
-  .note{color:var(--ink-soft);font-size:14px;max-width:60ch}
-  .standing{background:#FCEEF5;border:1px solid var(--pink);border-radius:16px;padding:22px 24px;margin:24px 0}
-  .formula{font-family:'IBM Plex Mono','Courier New',monospace;font-size:13px;color:var(--ink-soft);
-    background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px;display:inline-block}
-  .btn{font:inherit;font-weight:700;border:1px solid var(--ink);background:var(--card);color:var(--ink);
-    border-radius:999px;padding:9px 18px;cursor:pointer}
-  details{background:var(--card);border-top:3px solid var(--ink);margin:8px 0}
-  summary{cursor:pointer;padding:12px 14px;font-weight:600;list-style:none;display:flex;justify-content:space-between}
-  .gtable{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
-  .gtable td{border-bottom:1px solid var(--line);padding:5px 8px}
-  .gtable td:first-child{font-family:'IBM Plex Mono','Courier New',monospace;font-weight:700}
-  footer{color:var(--ink-faint);font-size:13px;border-top:1px solid var(--line);margin-top:36px;padding-top:14px}
+    background:transparent;border:0;border-radius:10px;padding:10px 10px;cursor:pointer;font-family:var(--font);font-size:15px;color:var(--ink)}
+  .item:hover{background:var(--paper)}
+  .chip{flex:0 0 auto;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+  .st-complete .chip{background:var(--good-bg);color:var(--good)}
+  .st-late .chip{background:#F2F9C1;color:#5B6900}
+  .st-missed .chip{background:var(--bad-bg);color:var(--bad)}
+  .item-label{flex:1 1 auto}
+  .item-state{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint)}
+  .rows{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:0 0 12px}
+  .row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-top:1px solid var(--line);cursor:pointer;background:var(--card)}
+  .row:first-child{border-top:0}
+  .row input{width:18px;height:18px;accent-color:var(--pink);flex:0 0 auto}
+  .row .rlabel{flex:1 1 auto;font-size:15px}
+  .row .rval{font-family:var(--mono);font-size:14px;color:var(--ink-soft)}
+  .foot{border-top:1px solid var(--line);margin-top:32px;padding-top:16px;font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
+  .reset{background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-family:var(--font);cursor:pointer;color:var(--ink);margin-top:8px}
+  details.scale{border-top:3px solid var(--ink);background:var(--card);margin:12px 0}
+  details.scale summary{cursor:pointer;padding:12px 16px;font-weight:700;list-style:none}
+  .scale-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;padding:0 16px 16px}
+  .scale-cell{font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+  .formula{font-family:var(--mono);font-size:13px;color:var(--ink-soft);background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:12px 16px}
 </style>
 </head>
 <body>
 <div class="wrap">
   <p class="eyebrow">ANTH 206 · Summer 2026 · Seattle Central</p>
   <h1>Where is my grade?</h1>
-  <p class="lede">Check your standing without emailing me. Mark what happened so far and the math below updates. This page lives in your browser: nothing is saved anywhere else, and nothing is sent to anyone.</p>
+  <p class="lede">Check your standing without emailing me. Mark what happened so far, and the math below updates. This page lives in your browser: nothing is saved anywhere else, and nothing is sent to anyone.</p>
 
-  <div class="card">
-    <p class="eyebrow">You start at</p>
-    <div class="meter">
-      <span class="bignum" id="grade">4.0</span><span class="of">of 4.0</span>
-    </div>
-    <div class="bar"><i id="fill" style="width:100%"></i></div>
-    <div class="scalerow"><span>0.0</span><span>1.0</span><span>2.0</span><span>3.0</span><span>4.0</span></div>
-    <p class="pct" id="pct">≈ 99–100% on the college scale</p>
-    <p class="note" id="lateline"></p>
+  <div class="standing">
+    <div class="eyebrow">Your standing today</div>
+    <div class="bignum" id="grade">4.0<small>of 4.0</small></div>
+    <div class="pct" id="pct"></div>
+    <div class="note" id="lateNote"></div>
+    <div class="note" id="spentNote">Everyone starts at 4.0. Everything is Complete or Incomplete, and an Incomplete can be resubmitted within 48 hours.</div>
   </div>
 
   <h2>Week by week</h2>
-  <p class="note">Tap an item to cycle it: ✓ complete → L late → ✗ missed → back. Leave future weeks as they are.</p>
+  <p class="lede">Tap an item to cycle it: ✓ complete → L late → ✗ missed → back. Leave future weeks as they are.</p>
   <div id="weeks"></div>
 
   <h2>The serious ones</h2>
-  <p class="note">These come after a conversation with me, never as a surprise.</p>
-  <div id="serious"></div>
+  <p class="lede">These come after a conversation with me, never as a surprise.</p>
+  <div class="rows" id="serious"></div>
 
   <h2>Extra credit</h2>
-  <p class="note">A cushion, not a ladder: your grade caps at 4.0.</p>
-  <div id="extra"></div>
+  <p class="lede">A cushion, not a ladder: your grade caps at 4.0.</p>
+  <div class="rows" id="extra"></div>
 
-  <div class="standing">
-    <p class="eyebrow">Your standing today</p>
-    <div class="bignum" id="grade2">4.0</div>
-    <p id="spentline" style="margin:8px 0 12px">You have spent 0.0 so far. Remember: anything Incomplete can be resubmitted within 48 hours.</p>
-    <span class="formula">grade = min(4.0, max(0, 4.0 − spent + extra credit))</span>
-    <div style="margin-top:14px"><button class="btn" id="reset">Start over</button></div>
-  </div>
-
-  <details>
-    <summary>The full grade scale <span aria-hidden="true">+</span></summary>
-    <table class="gtable" id="scaletable"></table>
+  <h2>The full grade scale</h2>
+  <details class="scale">
+    <summary>Tap to open the 4.0 → 0.0 table</summary>
+    <div class="scale-grid" id="scaleGrid"></div>
   </details>
 
-  <footer>
-    ANTH 206 · Digesting Capitalism · Private to this device · To talk grades, message me on Canvas.
-  </footer>
+  <h2>How the math works</h2>
+  <p class="formula">grade = min(4.0, max(0, 4.0 − spent + extra credit))</p>
+
+  <button class="reset" id="reset">Start over</button>
+
+  <div class="foot">
+    ANTH 206 · Digesting Capitalism<br>
+    Private to this device · To talk grades, message me on Canvas
+  </div>
 </div>
 
 <script>
-  var CONFIG = {
-    start: 4.0,
-    lateFree: 1,       // first late item is free
-    latePenalty: 0.2,  // each later late item
+const CONFIG = {
+  start: 4.0,
+  latePenalty: 0.2,      // each late item after the first
+  firstLateFree: true,   // the first late item is free
+  // Weekly gradable items, in module order, with Canvas numbering + trimmed labels.
+  // Week 6 has no project step (6.2 Assemble & Deliver is a page, not a graded item).
+  items: [
+    { week:1, id:'w1-project',  label:'1.3 Field Report',      penalty:0.5 },
+    { week:1, id:'w1-ticket',   label:'1.4 Entry Ticket',      penalty:0.5, noLate:true, firstMissFree:true },
+    { week:1, id:'w1-survey',   label:'1.5 Weekly Reflection', penalty:0.2 },
 
-    // Real gradable items, in module order. Trimmed labels + Canvas numbering.
-    // Note: Week 6 has NO project step (6.2 Assemble & Deliver is a page).
-    items: [
-      { week:1, num:'1.3', kind:'project',  label:'Field Report',       penalty:0.5 },
-      { week:1, num:'1.4', kind:'ticket',   label:'Entry Ticket',       penalty:0.5, noLate:true, firstMissFree:true },
-      { week:1, num:'1.5', kind:'survey',   label:'Weekly Reflection',  penalty:0.2 },
+    { week:2, id:'w2-project',  label:'2.3 Rough Draft',       penalty:0.5 },
+    { week:2, id:'w2-workshop', label:'2.4 Peer Workshop',     penalty:0.5 },
+    { week:2, id:'w2-ticket',   label:'2.5 Entry Ticket',      penalty:0.5, noLate:true },
+    { week:2, id:'w2-survey',   label:'2.6 Weekly Reflection', penalty:0.2 },
 
-      { week:2, num:'2.3', kind:'project',  label:'Rough Draft',        penalty:0.5 },
-      { week:2, num:'2.4', kind:'workshop', label:'Peer Workshop',      penalty:0.5 },
-      { week:2, num:'2.5', kind:'ticket',   label:'Entry Ticket',       penalty:0.5, noLate:true },
-      { week:2, num:'2.6', kind:'survey',   label:'Weekly Reflection',  penalty:0.2 },
+    { week:3, id:'w3-project',  label:'3.3 Revised Draft',     penalty:0.5 },
+    { week:3, id:'w3-ticket',   label:'3.4 Entry Ticket',      penalty:0.5, noLate:true },
+    { week:3, id:'w3-survey',   label:'3.5 Weekly Reflection', penalty:0.2 },
 
-      { week:3, num:'3.3', kind:'project',  label:'Revised Draft',      penalty:0.5 },
-      { week:3, num:'3.4', kind:'ticket',   label:'Entry Ticket',       penalty:0.5, noLate:true },
-      { week:3, num:'3.5', kind:'survey',   label:'Weekly Reflection',  penalty:0.2 },
+    { week:4, id:'w4-project',  label:'4.3 Pitch Your Claim',  penalty:0.5 },
+    { week:4, id:'w4-ticket',   label:'4.4 Entry Ticket',      penalty:0.5, noLate:true },
+    { week:4, id:'w4-survey',   label:'4.5 Weekly Reflection', penalty:0.2 },
 
-      { week:4, num:'4.3', kind:'project',  label:'Pitch Your Claim',   penalty:0.5 },
-      { week:4, num:'4.4', kind:'ticket',   label:'Entry Ticket',       penalty:0.5, noLate:true },
-      { week:4, num:'4.5', kind:'survey',   label:'Weekly Reflection',  penalty:0.2 },
+    { week:5, id:'w5-project',  label:'5.3 Your Contribution', penalty:0.5 },
+    { week:5, id:'w5-workshop', label:'5.4 Peer Workshop',     penalty:0.5 },
+    { week:5, id:'w5-ticket',   label:'5.5 Entry Ticket',      penalty:0.5, noLate:true },
+    { week:5, id:'w5-survey',   label:'5.6 Weekly Reflection', penalty:0.2 },
 
-      { week:5, num:'5.3', kind:'project',  label:'Your Contribution',  penalty:0.5 },
-      { week:5, num:'5.4', kind:'workshop', label:'Peer Workshop',      penalty:0.5 },
-      { week:5, num:'5.5', kind:'ticket',   label:'Entry Ticket',       penalty:0.5, noLate:true },
-      { week:5, num:'5.6', kind:'surv
+    { week:6, id:'w6-ticket',   label:'6.3 Entry Ticket',      penalty:0.5, noLate:true },
+    { week:6, id:'w6-survey',   label:'6.4 Weekly Reflection', penalty:0.2 },
+  ],
+  weekLabels: {
+    1:'Entrées into the Anthropology of Food',
+    2:'Deep Hanging Out',
+    3:'Nutritional Politics',
+    4:'Revolting Tastes, Global Wastes',
+    5:'Recipe, Representation, & Value',
+    6:'Conclusions',
+  },
+  weekModules: { 1:'Module I', 2:'Module I', 3:'Module I', 4:'Module II', 5:'Module II', 6:'Module II · Last week' },
+  serious: [
+    { id:'ai-peers',       label:'Sent AI work to peers for review',           penalty:0.5 },
+    { id:'no-participate', label:'No participation all term',                   penalty:1.0 },
+    { id:'gen-ai',         label:'Gen-AI in your writing (after a conversation)',penalty:1.0 },
+  ],
+  extraCredit: [
+    { id:'zapp',   label:'ZAPP zine-library visit (+ worksheet + photos)',        credit:0.1 },
+    { id:'conf',   label:'Signed up for the optional conference',                 credit:0.1 },
+    { id:'editor', label:'Stepped up as cookbook editor / designer / printer',    credit:0.2 },
+  ],
+};
+
+// GPA → percentage scale (0.1 steps).
+const SCALE = [
+  [4.0,'99-100'],[3.9,'97-98'],[3.8,'95-96'],[3.7,'93-94'],[3.6,'91-92'],
+  [3.5,'89-90'],[3.4,'87-88'],[3.3,'85-86'],[3.2,'83-84'],[3.1,'81-82'],
+  [3.0,'79-80'],[2.9,'77-78'],[2.8,'75-76'],[2.7,'73-74'],[2.6,'71-72'],
+  [2.5,'69-70'],[2.4,'67-68'],[2.3,'65-66'],[2.2,'63-64'],[2.1,'61-62'],
+  [2.0,'59-60'],[1.9,'57-58'],[1.8,'55-56'],[1.7,'53-54'],[1.6,'51-52'],
+  [1.5,'49-50'],[1.0,'40s'],[0.7,'30s'],[0.0,'below'],
+];
+
+const STATES = ['none','complete','late','missed'];
+const CHIP = { none:'·', complete:'✓', late:'L', missed:'✗' };
+const state = {};           // itemId -> state
+const serious = {};         // id -> bool
+const extra = {};           // id -> bool
+
+function pctFor(g){
+  let best = SCALE[SCALE.length-1][1];
+  for (const [gpa,pct] of SCALE){ if (g >= gpa - 0.0001){ best = pct; break; } }
+  return best;
+}
+
+function compute(){
+  let spent = 0, lateCount = 0, missedTicketCount = 0;
+  for (const it of CONFIG.items){
+    const s = state[it.id] || 'none';
+    if (s === 'late'){ lateCount++; }
+    if (s === 'missed'){
+      if (it.firstMissFree || it.id.endsWith('-ticket')){
+        // first missed ticket across the term is free
+        missedTicketCount++;
+        if (it.id.endsWith('-ticket') && missedTicketCount === 1){ continue; }
+      }
+      spent += it.penalty;
+    }
+  }
+  // late charges: first late is free, each later one costs latePenalty
+  const lateCharged = CONFIG.firstLateFree ? Math.max(0, lateCount - 1) : lateCount;
+  spent += lateCharged * CONFIG.latePenalty;
+  // serious
+  for (const s of CONFIG.serious){ if (serious[s.id]) spent += s.penalty; }
+  // extra credit
+  let earned = 0;
+  for (const e of CONFIG.extraCredit){ if (extra[e.id]) earned += e.credit; }
+
+  const grade = Math.min(CONFIG.start, Math.max(0, CONFIG.start - spent + earned));
+  return { grade, spent, earned, lateCount, lateCharged };
+}
+
+function render(){
+  const r = compute();
+  document.getElementById('grade').innerHTML = r.grade.toFixed(1) + '<small>of 4.0</small>';
+  document.getElementById('pct').textContent = '≈ ' + pctFor(r.grade) + '% on the college scale';
+  document.getElementById('lateNote').textContent = r.lateCount > 0
+    ? (r.lateCount + ' late item' + (r.lateCount>1?'s':'') + ': first one free, ' + r.lateCharged + ' × −0.2.')
+    : 'No late items marked.';
+  const netSpent = (r.spent - r.earned);
+  document.getElementById('spentNote').textContent =
+    'You have spent ' + r.spent.toFixed(1) + ' so far'
+    + (r.earned>0 ? ', earned back ' + r.earned.toFixed(1) : '')
+    + '. Remember: anything Incomplete can be resubmitted within 48 hours.';
+}
+
+function buildWeeks(){
+  const host = document.getElementById('weeks');
+  host.innerHTML = '';
+  const weeks = [...new Set(CONFIG.items.map(i=>i.week))].sort((a,b)=>a-b);
+  for (const w of weeks){
+    const box = document.createElement('div'); box.className = 'week';
+    const nn = String(w).padStart(2,'0');
+    box.innerHTML =
+      '<div class="week-head"><div><span class="week-n">'+nn+'</span> '
+      + '<span class="week-title">'+CONFIG.weekLabels[w]+'</span></div>'
+      + '<span class="week-mod">'+CONFIG.weekModules[w]+'</span></div>';
+    const ul = document.createElement('ul'); ul.className = 'items';
+    for (const it of CONFIG.items.filter(i=>i.week===w)){
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.className = 'item';
+      btn.dataset.id = it.id;
+      btn.addEventListener('click', ()=>{
+        const cur = STATES.indexOf(state[it.id] || 'none');
+        state[it.id] = STATES[(cur+1) % STATES.length];
+        paint(btn, it.id);
+        render();
+      });
+      li.appendChild(btn); ul.appendChild(li);
+      paint(btn, it.id);
+    }
+    box.appendChild(ul); host.appendChild(box);
+  }
+}
+function paint(btn, id){
+  const s = state[id] || 'none';
+  const it = CONFIG.items.find(i=>i.id===id);
+  btn.className = 'item st-' + s;
+  btn.innerHTML = '<span class="chip">'+CHIP[s]+'</span>'
+    + '<span class="item-label">'+it.label+'</span>'
+    + '<span class="item-state">'+(s==='none'?'':s)+'</span>';
+}
+
+function buildRows(hostId, arr, store, valKey, sign){
+  const host = document.getElementById(hostId); host.innerHTML='';
+  for (const item of arr){
+    const row = document.createElement('label'); row.className='row';
+    const val = sign + item[valKey].toFixed(1);
+    row.innerHTML = '<input type="checkbox"><span class="rlabel">'+item.label+'</span><span class="rval">'+val+'</span>';
+    const cb = row.querySelector('input');
+    cb.addEventListener('change', ()=>{ store[item.id]=cb.checked; render(); });
+    host.appendChild(row);
+  }
+}
+
+function buildScale(){
+  const g = document.getElementById('scaleGrid'); g.innerHTML='';
+  for (const [gpa,pct] of SCALE){
+    const c = document.createElement('div'); c.className='scale-cell';
+    c.textContent = gpa.toFixed(1) + '  ·  ' + pct + '%';
+    g.appendChild(c);
+  }
+}
+
+document.getElementById('reset').addEventListener('click', ()=>{
+  for (const k in state) delete state[k];
+  for (const k in serious) delete serious[k];
+  for (const k in extra) delete extra[k];
+  document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);
+  buildWeeks(); render();
+});
+
+buildWeeks();
+buildRows('serious', CONFIG.serious, serious, 'penalty', '−');
+buildRows('extra', CONFIG.extraCredit, extra, 'credit', '+');
+buildScale();
+render();
+</script>
+</body>
+</html>
